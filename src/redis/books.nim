@@ -1,4 +1,5 @@
-import std/options, std/asyncdispatch, std/asyncfutures, std/strformat, std/sequtils, std/strutils
+import std/options, std/asyncdispatch, std/asyncfutures, std/strformat,
+        std/sequtils, std/strutils
 import std/json, std/marshal
 
 import rd_utils
@@ -19,7 +20,8 @@ func final_key(key: string): string =
     else:
         key
 
-proc new*(name: string, author: string, link: Option[string] = none(string)): Book =
+proc new*(name: string, author: string, link: Option[string] = none(
+        string)): Book =
     Book(
         name: name,
         meta: BookMeta(author: author, link: link)

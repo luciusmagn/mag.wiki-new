@@ -23,7 +23,7 @@ proc menu(selected: string): VNode =
 func spawn_tags*(tags: seq[string]): VNode =
     let elems = tags.map(
         func (t: string): VNode =
-            build_html(span(class="tags")): a(href=fmt"/t/{t}"): text t
+        build_html(span(class = "tags")): a(href = fmt"/t/{t}"): text t
     )
 
     result = build_html(span())
@@ -34,7 +34,8 @@ func spawn_tags*(tags: seq[string]): VNode =
 func content_elem*(): VNode =
     build_html(main(class = "page-content"))
 
-func base*(title: string, selected: string, include_css = @["/static/main.css", "/static/fonts.css"], content: VNode): VNode =
+func base*(title: string, selected: string, include_css = @["/static/main.css",
+        "/static/fonts.css"], content: VNode): VNode =
     let menu = menu(selected)
 
     result = build_html(html):
@@ -45,7 +46,7 @@ func base*(title: string, selected: string, include_css = @["/static/main.css", 
                 link(rel = "stylesheet", type = "text/css", href = l)
         body:
             header:
-                a(href="/"):
+                a(href = "/"):
                     text "magnusi"
             menu
             content

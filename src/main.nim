@@ -13,8 +13,8 @@ proc main() {.async.} =
     #discard (await book.save(redis_client))
 
     let settings =
-        #new_settings(debug = false)
-        new_settings()
+        new_settings(debug = false)
+        #new_settings()
     var app = new_app(settings = settings)
     app.get("/", view.index)
     app.get("/articles", view.articles)
@@ -34,13 +34,13 @@ proc main() {.async.} =
 
     # static pages
     app.get("/btc", view.btc)
-    app.post("/s/btc", api.btc.post)
+    app.post("/s/btc", api.site("btc"))
 
     app.get("/contact", view.contact)
-    app.post("/s/contact", api.contact.post)
+    app.post("/s/contact", api.site("contact"))
 
     app.get("/join", view.join)
-    app.post("/s/join", api.join.post)
+    app.post("/s/join", api.site("join"))
 
     # misc
     app.use(staticFileMiddleware("static"))

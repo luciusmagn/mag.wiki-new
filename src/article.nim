@@ -25,6 +25,7 @@ let title: string = parts[2]
 let tags: seq[string] = parts[3..parts.len() - 2]
 let content: string = read_file(name)
 
-let res = new(author = author, key = key, date = date, title = title, tags = tags, content = content, url = url)
+let res = new(author = author, key = key, date = date, title = title,
+                tags = tags, content = content, url = url)
 
 echo $$res

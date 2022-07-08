@@ -1,6 +1,7 @@
 import prologue
 
-import std/sequtils, std/random, std/bitops, std/asyncdispatch, std/asyncfutures, std/options
+import std/sequtils, std/random, std/bitops, std/asyncdispatch,
+        std/asyncfutures, std/options
 from std/strutils import join
 
 import redis/rd_utils

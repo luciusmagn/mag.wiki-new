@@ -20,7 +20,8 @@ type
         preview*: Option[string]
 
 proc new*(author: string, content: string, title: string, url: string,
-        tags: seq[string], date: string, key: Option[string] = none(string)): Article =
+        tags: seq[string], date: string, key: Option[string] = none(
+                string)): Article =
     Article(
         original: none(ref Article),
         content: content,
@@ -48,9 +49,11 @@ proc read*(key: string, con: AsyncRedis): Future[Option[Article]] {.async.} =
         article.date = await con.get(fmt"web:article:{key}:date")
 
         while true:
-            if (await con.exists(fmt"web:article:{key}:html")) and (await con.exists(fmt"web:article:{key}:preview")):
+            if (await con.exists(fmt"web:article:{key}:html")) and (
+                    await con.exists(fmt"web:article:{key}:preview")):
                 article.html = some(await con.get(fmt"web:article:{key}:html"))
-                article.preview = some(await con.get(fmt"web:article:{key}:preview"))
+                article.preview = some(await con.get(
+                        fmt"web:article:{key}:preview"))
                 break
             else:
                 gen_md_for_key(fmt"web:article:{key}")
@@ -62,7 +65,7 @@ proc read*(key: string, con: AsyncRedis): Future[Option[Article]] {.async.} =
     except:
         result = none(Article)
 
-proc save*(article: Article, con: AsyncRedis) {.async,gcsafe.} =
+proc save*(article: Article, con: AsyncRedis) {.async, gcsafe.} =
     var v: seq[Future[void]] = @[]
 
     let key = if article.key.is_some():

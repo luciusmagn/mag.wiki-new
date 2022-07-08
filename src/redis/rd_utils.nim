@@ -17,7 +17,9 @@ proc read_con*(): Future[AsyncRedis] {.async.} =
     )
     return con
 
-proc write_con*(user: string = os.get_env("REDIS_WRITE_USER"), pass: string = os.get_env("REDIS_WRITE_USER_PWD")): Future[AsyncRedis] {.async.} =
+proc write_con*(user: string = os.get_env("REDIS_WRITE_USER"),
+        pass: string = os.get_env("REDIS_WRITE_USER_PWD")): Future[
+        AsyncRedis] {.async.} =
     result = await con_helper()
     await result.auth(user, pass)
 

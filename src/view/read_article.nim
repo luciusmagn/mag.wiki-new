@@ -33,7 +33,7 @@ proc read_article*(ctx: Context) {.async.} =
             text article.date
         br()
         italic:
-            a(href=fmt"/u/{article.author}", class="article-author"):
+            a(href = fmt"/u/{article.author}", class = "article-author"):
                 text article.author
         br()
         tags
@@ -42,9 +42,9 @@ proc read_article*(ctx: Context) {.async.} =
         header: h1: text article.title
         verbatim(
             html_content
-                .replace(re"<p>", "<p class=\"has-side-note\">", limit = 1)
-                .replace(re"</p>", fmt"</p>{$side_note}", limit = 1)
-            )
+            .replace(re"<p>", "<p class=\"has-side-note\">", limit = 1)
+            .replace(re"</p>", fmt"</p>{$side_note}", limit = 1)
+        )
 
     base_elem.add(content)
 

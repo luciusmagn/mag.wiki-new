@@ -10,7 +10,8 @@ import ../redis/article_index, ../redis/article, ../redis/rd_utils
 proc tags(con: AsyncRedis): Future[VNode] {.async.} =
     let index = await read(con)
 
-    var tag_elems = build_html(tdiv(class = "side-note", style=style((border_left, "none")))):
+    var tag_elems = build_html(tdiv(class = "side-note", style = style((
+            border_left, "none")))):
         h1: text "Tags"
 
     for tag in index.tags.sorted():
@@ -32,28 +33,32 @@ tell you how you can publish them to this site yourself.)
 
 proc links(con: AsyncRedis): Future[VNode] {.async.} =
     let keys = await fetch_articles(con)
-    let articles: seq[Article] = (await all(keys.map(proc (x: auto): auto = x.read(con))))
+    let articles: seq[Article] = (await all(keys.map(proc (
+            x: auto): auto = x.read(con))))
         .filter(proc (x: auto): auto = x.is_some())
         .map(proc (x: auto): auto = x.get())
 
-    let content = build_html(tdiv(class="has-side-note")):
+    let content = build_html(tdiv(class = "has-side-note")):
         h1: text "Articles"
         p:
             verbatim intro_text
-        table(class="article-table"):
+        table(class = "article-table"):
             for article in articles:
                 tr:
                     td:
-                        a(class="article-listing", href=fmt"/a/{article.key.get()}/{article.url}"):
+                        a(class = "article-listing",
+                                href = fmt"/a/{article.key.get()}/{article.url}"):
                             text article.title
                     td:
-                        a(class="article-author", href=fmt"/u/{article.author}"):
+                        a(class = "article-author",
+                                href = fmt"/u/{article.author}"):
                             text article.author
                     td:
                         text article.date
                     td:
                         for tag in article.tags.sorted():
-                            a(class="article-listing-tag", href=fmt"/t/{tag}"): text tag
+                            a(class = "article-listing-tag",
+                                    href = fmt"/t/{tag}"): text tag
 
     return content
 

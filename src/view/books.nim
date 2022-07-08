@@ -31,10 +31,10 @@ proc books*(ctx: Context) {.async, gcsafe.} =
             verbatim(book_text)
         table:
             for book in books.sorted_by_it(it.meta.author):
-                tr(class="book-listing"):
+                tr(class = "book-listing"):
                     td:
                         if book.meta.link.is_some():
-                            a(href=book.meta.link.get()): text book.name
+                            a(href = book.meta.link.get()): text book.name
                         else:
                             text book.name
                     td:
