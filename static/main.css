@@ -1,0 +1,234 @@
+.tags:not(:empty) ~ .tags:not(:empty):before {
+  content: ", ";
+}
+.tags a {
+    text-decoration: underline;
+    pointer: cursor;
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: TT Livret, serif;
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    font-size: 1.35rem;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  body {
+    font-size: 1.5rem;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+pre {
+  color: #fff;
+  background-color: #333;
+  padding: 1vw;
+  overflow-x: auto;
+}
+
+figcaption,
+.side-note {
+  font-size: 0.8em;
+  line-height: 1.875;
+  text-align: left;
+}
+
+.side-note {
+  border-left: 5px solid #333;
+  padding-left: 1.5rem;
+}
+
+.side-note::before {
+  font-style: normal;
+  text-decoration: underline;
+  margin-right: 0.3em;
+}
+
+@media only screen and (max-width: 600px) {
+  .side-note {
+    margin-left: 1.5rem;
+  }
+}
+
+.page-content {
+  margin-top: 3vw;
+  margin-bottom: 3vw;
+}
+
+article > * {
+  margin-top: 0;
+  text-align: justify;
+  margin-bottom: 1.5rem;
+}
+
+@supports (display: grid) {
+  @media only screen and (min-width: 600px) {
+    article {
+      max-width: 600px;
+      margin-right: auto;
+      margin-left: auto;
+
+      display: grid;
+      grid-column-gap: 1.5rem;
+      align-items: start;
+      grid-template-columns:
+        [full-start main-start] 3fr [main-end side-start] 1fr [side-end full-end];
+    }
+
+    article > * {
+      grid-column: main;
+    }
+
+    article > pre,
+    article > figure,
+    article > blockquote,
+    .grow-to-full {
+      grid-column: full;
+    }
+
+    article > h1,
+    article > h2,
+    article > h3,
+    article > h4,
+    article > h5,
+    article > h6 {
+      grid-column: main-start / full-end;
+    }
+
+    article > .has-side-note {
+      grid-column-end: main-end;
+    }
+
+    article > .side-note {
+      grid-column: side;
+    }
+  }
+
+  @media only screen and (min-width: 1400px) {
+    article {
+      max-width: 1400px;
+      grid-template-columns:
+        [full-start] 1fr [main-start] 3fr [main-end side-start] 1fr [side-end full-end];
+    }
+  }
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    justify-self: center;
+    border-top: solid #bbb 1px;
+    border-bottom: solid #bbb 1px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    justify-content: space-evenly;
+}
+nav a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #555;
+}
+nav a:hover {
+    transition: .5s;
+    color: #000;
+}
+.current {
+    font-weight: bold;
+    color: #000;
+}
+body > header {
+    font-size: 96;
+    text-align: center;
+    width: 100%;
+    margin-top: 15rem;
+    margin-bottom: 5rem;
+}
+body > header > a {
+    text-decoration: none;
+    color: #000;
+}
+
+body > footer {
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+p {
+    font-weight: 400;
+    font-size: 1.35rem;
+}
+li {
+    font-size: 1.35rem;
+}
+table {
+    width: 100%;
+    font-size: 1.25rem;
+}
+h1 > a, h2 > a {
+    text-decoration: none;
+    color: inherit;
+}
+a.open {
+    color: #444;
+    font-size: 1.15rem;
+}
+
+.article-listing {
+    text-decoration: none;
+    font-weight: 800;
+    color: black;
+    font-size: 1.45rem;
+}
+
+.article-author {
+    text-decoration: none;
+    color: black;
+    font-style: italic;
+}
+
+.article-author:hover {
+    text-decoration: underline;
+}
+
+.article-listing-tag {
+    color: black;
+}
+
+.article-table td {
+    padding: 0.5em;
+}
+
+tr.book-listing td:first-child {
+    font-weight: bold;
+    font-size: 1.45rem;
+}
+
+tr.book-listing td:last-child {
+    font-style: italic;
+}
+
+tr.book-listing a {
+    text-decoration: none;
+    color: black;
+}

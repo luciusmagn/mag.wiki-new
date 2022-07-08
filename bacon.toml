@@ -1,0 +1,14 @@
+# This is a configuration file for the bacon tool
+# More info at https://github.com/Canop/bacon
+
+default_job = "rust"
+
+[jobs]
+
+[jobs.nim]
+command = ["nimble", "build" ]
+need_stdout = true
+
+[jobs.rust]
+command = ["cargo", "check", "--color", "always", "--bin", "markdown-server"]
+need_stdout = false

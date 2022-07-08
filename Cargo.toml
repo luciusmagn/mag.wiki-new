@@ -1,0 +1,28 @@
+[package]
+name = "web"
+version = "0.1.0"
+edition = "2021"
+include = ["src/**.nim"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "markdown-server"
+path = "src/main.rs"
+
+#[lib]
+#name = "web"
+##path = "src/web.nim"
+#test = false
+#doctest = false
+#doc = false
+#bench = false
+#plugin = false
+#proc-macro = false
+#harness = false
+
+[dependencies]
+dotenv = "0.15.0"
+futures = "0.3.21"
+pulldown-cmark = { version = "0.9.1", features = ["simd"] }
+redis = "0.21.5"
+tokio = { version = "1.19.2", features = ["full"] }
