@@ -33,13 +33,13 @@ proc main() {.async.} =
     app.delete("/b/{title}", api.books.delete)
 
     # static pages
-    app.get("/btc", view.btc)
+    app.get("/btc", view.simple_text("btc", "BTC", "/btc"))
     app.post("/s/btc", api.site("btc"))
 
-    app.get("/contact", view.contact)
+    app.get("/contact", view.simple_text("contact", "Contact", "/contact"))
     app.post("/s/contact", api.site("contact"))
 
-    app.get("/join", view.join)
+    app.get("/join", view.simple_text("join", "Join", "/join"))
     app.post("/s/join", api.site("join"))
 
     # misc
